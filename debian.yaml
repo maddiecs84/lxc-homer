@@ -95,17 +95,13 @@ files:
   generator: dump
   content: |-
     [Unit]
-    Description=Homer
-    Wants=network-online.target
+    Description=Homer Dashboard
     After=network-online.target
 
     [Service]
-    User=homer
-    Group=homer
+    Type=simple
     WorkingDirectory=/opt/homer
-    EnvironmentFile=/opt/homer/.env
-    ExecStart=lighttpd -D -f /opt/homer/lighttpd.conf
-    Restart=always
+    ExecStart=python3 -m http.server 8080
 
     [Install]
     WantedBy=multi-user.target
@@ -122,7 +118,6 @@ packages:
     - unzip
     - wget
     - ca-certificates
-    - lighttpd
     action: install
 
   - packages:
@@ -172,10 +167,6 @@ actions:
     mkdir -p /opt/homer
     unzip /usr/share/homer/homer.zip -d /opt/homer
     rm /usr/share/homer/homer.zip
-
-    echo "PORT=80" > /opt/homer/.env
-    echo "SUBFOLDER=\"/_\"" >> /opt/homer/.env
-    echo "INIT_ASSETS=1" >> /opt/homer/.env
 
     chown -R homer: /opt/homer
   releases:
