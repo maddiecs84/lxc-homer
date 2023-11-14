@@ -167,6 +167,7 @@ actions:
     mkdir -p /opt/homer
     unzip /usr/share/homer/homer.zip -d /opt/homer
     rm /usr/share/homer/homer.zip
+    cp /opt/homer/assets/config.yml.dist /opt/homer/assets/config.yml
 
     chown -R homer: /opt/homer
   releases:
