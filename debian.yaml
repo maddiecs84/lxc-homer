@@ -118,6 +118,7 @@ packages:
     - unzip
     - wget
     - ca-certificates
+    - pip
     action: install
 
   - packages:
